@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
+
 const Header = () => {
+    const navigate = useNavigate();
     return ( 
         <header className="hero">
             <div className="title-section">
@@ -7,10 +11,10 @@ const Header = () => {
             </div>  
             <div className="button-bar">
             <div className="hero-buttons">
-                <button className="nav-button">Study countries</button>
-                <button className="nav-button">Collection</button>
-                <button className="nav-button">Quiz</button>
-                <button className="nav-button">Leaderboard</button>
+                <button className="nav-button" onClick={() => navigate('/Countries')}>Study countries</button>
+                <button className="nav-button" onClick={() => navigate('/Collection')}>Collection</button>
+                <button className="nav-button" onClick={() => navigate('/Quiz')}>Quiz</button>
+                <button className="nav-button" onClick={() => navigate('/Leaderboard')}>Leaderboard</button>
             </div>
             </div>
         </header>
