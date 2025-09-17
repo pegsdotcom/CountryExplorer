@@ -8,6 +8,7 @@ export const fetchRegions = createAsyncThunk(
     return data;
 }
 );
+const savedCountries = JSON.parse(localStorage.getItem('savedCountries')) || [];
 
 const countriesSlice = createSlice({
   name: 'countries',
@@ -16,10 +17,18 @@ const countriesSlice = createSlice({
     selectedRegion: '',
     loading: false,
     error: null,
+    savedCountries: savedCountries,
   },
   reducers: {
     setSelectedRegion: (state, action) => {
       state.selectedRegion = action.payload;
+    },
+    saveCountry: (state, action) => {
+      const exists = state.savedCountries.find(c => c.name.common === action.payload.name.common);
+      if (!exists) {
+        state.savedCountries.push(action.payload);
+        localStorage.setItem('savedCountries', JSON.stringify(state.savedCountries));
+      }
     },
   },
   extraReducers: (builder) => {
@@ -34,5 +43,5 @@ const countriesSlice = createSlice({
 })}
 });
 
-export const { setSelectedRegion } = countriesSlice.actions;
+export const { setSelectedRegion, saveCountry  } = countriesSlice.actions;
 export default countriesSlice.reducer;

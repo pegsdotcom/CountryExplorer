@@ -154,4 +154,73 @@ body {
   padding: 0.75rem;
   font-weight: 500;
 }
+/*CountryDetails*/
+.country-details {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 10px;
+  background: #fdfdfd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+.country-name {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+.country-flag {
+  width: 200px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+.country-info {
+  font-size: 1.1rem;
+  color: #444;
+  margin: 8px 0;
+}
+.map-link {
+  color: #007acc;
+  font-weight: 600;
+  text-decoration: none;
+}
+.map-link:hover {
+  text-decoration: underline;
+}
+.button-group {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.btn {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.save-btn {
+  background-color: #007acc;
+  color: white;
+}
+.save-btn:hover {
+  background-color: #005fa3;
+}
+.back-btn {
+  background-color: #ddd;
+  color: #333;
+}
+.back-btn:hover {
+  background-color: #bbb;
+}
+.not-found {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 1.5rem;
+  color: red;
+}
 
