@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import { CountriesContext } from '../context/CountriesContext';
 
 const Countries = () => {
-  const { setRegion } = useContext(CountriesContext);
+const { region, setRegion, countries, loading } = useContext(CountriesContext);
+
   const regions = [
     { name: 'Europe', image: '/images/europe.jpg' },
     { name: 'Africa', image: '/images/africa.jpg' },
@@ -27,6 +28,31 @@ const Countries = () => {
           </button>
         ))}
       </div>
+
+      {region && (
+          <>
+            <h3 className="flags-title">Countries in {region}</h3>
+
+            {loading && <p className="loading-text">Loading countries...</p>}
+
+            <div className="flags-container">
+              {countries.map(country => (
+                <div
+                  key={country.cca3}
+                  className="flag-card"
+                  tabIndex={0}
+                  role="button"
+                >
+                  <img
+                    src={country.flags.svg}
+                    alt={`Flag of ${country.name.common}`}
+                  />
+                  <p>{country.name.common}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </>
   );
