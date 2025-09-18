@@ -1,46 +1,37 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedRegion, fetchRegions } from '../redux/countriesSlice';
-import { useNavigate } from 'react-router-dom';
-
-const regions = ['Europe', 'Asia', 'Oceania', 'Americas', 'Africa'];
+import { useContext } from 'react';
+import { CountriesContext } from '../context/CountriesContext';
 
 const Countries = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const { countries, selectedRegion, loading, error } = useSelector(({ countries }) => countries);
-
-  useEffect(() => {
-    if (selectedRegion) {
-      dispatch(fetchRegions(selectedRegion));
-    }
- }, [selectedRegion, dispatch]);
+  const { setRegion } = useContext(CountriesContext);
+  const regions = [
+    { name: 'Europe', image: '/images/europe.jpg' },
+    { name: 'Africa', image: '/images/africa.jpg' },
+    { name: 'Americas', image: '/images/americas.jpg' },
+    { name: 'Asia', image: '/images/asia.jpg' },
+    { name: 'Oceania', image: '/images/oceanien.jpg' },
+  ];
 
   return (
-    <div className="countries-page">
-      <h2>Choose a region</h2>
-      <div className="region-buttons">
-        {regions.map((region) => (
-          <button key={region} className={`region-button ${selectedRegion === region ? 'active' : ''}`}
-            onClick={() => dispatch(setSelectedRegion(region))}> {region}</button>
+    <>
+     <div className="region-container">
+        <h2 className="region-title">Choose Your Region</h2>
+          <div className="region-cards">
+        {regions.map(region => (
+          <button
+            key={region.name}
+            onClick={() => setRegion(region.name)}
+            className="region-buttons"
+          >
+            <img src={region.image} alt={region.name} />
+            <p>{region.name}</p>
+          </button>
         ))}
       </div>
-
-      {loading && <p>Loading countries...</p>}
-      {error && <p>Error: {error}</p>}
-
-      <div className="countries-grid">
-        {countries.map(({ name: { common }, flags: { svg } }) => (
-          <div key={common} className="country-card" onClick={() => navigate(`/countries/${common}`)}>
-            <img src={svg} alt={common} />
-            <p>{common}</p>
-          </div>
-        ))}
       </div>
-    </div>
+    </>
   );
 };
 
 export default Countries;
+
 

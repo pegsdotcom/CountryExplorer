@@ -18,15 +18,4 @@ const Header = () => {
   );
 };
 
- 
-            {/* <div className="button-bar">
-            <div className="hero-buttons">
-                <button className="nav-button" onClick={() => navigate('/Countries')}>Study countries</button>
-                <button className="nav-button" onClick={() => navigate('/Collection')}>Collection</button>
-                <button className="nav-button" onClick={() => navigate('/Quiz')}>Quiz</button>
-                <button className="nav-button" onClick={() => navigate('/Leaderboard')}>Leaderboard</button>
-            </div>
-            </div>  */}
-
- 
 export default Header;
