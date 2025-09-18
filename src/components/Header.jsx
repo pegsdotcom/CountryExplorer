@@ -1,24 +1,32 @@
-import { useNavigate } from 'react-router-dom';
-
+import Navbar from './Navbar'; 
 
 const Header = () => {
-    const navigate = useNavigate();
     return ( 
-        <header className="hero">
-            <div className="title-section">
-                <h1 className="header-title">Explore the World</h1>
-                <p className="header-paragraph">Learn about countries, test your knowledge and build your collection.</p>
-            </div>  
-            <div className="button-bar">
+
+    <section className="hero-section">
+      <video autoPlay loop muted playsInline className="hero-video">
+      <source src="/images/videos/hero.mp4" />
+      </video>
+        <Navbar />
+      <div className="hero-content">
+        <h1>Discover the World, One Country at a Time</h1>
+        <p>
+          Explore detailed insights about countries across the globe — from geography and culture to population and history.
+        </p>
+      </div>
+    </section>
+  );
+};
+
+ 
+            {/* <div className="button-bar">
             <div className="hero-buttons">
                 <button className="nav-button" onClick={() => navigate('/Countries')}>Study countries</button>
                 <button className="nav-button" onClick={() => navigate('/Collection')}>Collection</button>
                 <button className="nav-button" onClick={() => navigate('/Quiz')}>Quiz</button>
                 <button className="nav-button" onClick={() => navigate('/Leaderboard')}>Leaderboard</button>
             </div>
-            </div>
-        </header>
-     );
-}
+            </div>  */}
+
  
 export default Header;
