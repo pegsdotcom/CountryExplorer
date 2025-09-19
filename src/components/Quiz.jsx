@@ -1,41 +1,56 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import AnimatedModel from '../components/AnimatedModel';
-const Quiz = () => {
-    return (  
-        <>
-             {/* <div className="home-container">
-     
+import { useContext, useState } from 'react';
+import { QuizContext } from '../context/QuizContext';
 
-        <div className="model-and-text">
-      
-          <div className="canvas-wrapper">
-            <Canvas
-              style={{ width: '100%', height: '100%', display: 'block' }}
-              camera={{ position: [0, 1.2, 4.5], fov: 45 }}
-            >
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[3, 5, 2]} intensity={1.2} />
-              <AnimatedModel />
-              <OrbitControls
-                enableRotate={false}
-                enableZoom={false}
-                enablePan={false}
-                maxPolarAngle={Math.PI / 2.2}
-                minPolarAngle={Math.PI / 2.8}
-              />
-            </Canvas>
-          </div>
+const Quiz = ({ onFinish }) => {
+  const {questions, currentIndex, currentAnswer,score, nextQuestion,saveResult} = useContext(QuizContext);
+  const [userInput, setUserInput] = useState('');
+  const [feedback, setFeedback] = useState(null);
 
-      
-        <h1 className="home-title">
-      Say Hello to Your Guide — Where Do You Want to Start?
-    </h1>
+  if (!questions.length) return <div>Laddar frågor...</div>;
 
-          </div>
-        </div> */}
-        </>
-    );
-}
- 
+  const currentQuestion = questions[currentIndex];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isCorrect = currentAnswer(userInput);
+    setFeedback(isCorrect);
+
+    setTimeout(() => {
+      setFeedback(null);
+      setUserInput('');
+      if (currentIndex + 1 >= questions.length) {
+        saveResult();
+        onFinish();
+      } else {
+        nextQuestion();
+      }
+    }, 2000);
+  };
+
+  return (
+    <div className="quiz-question">
+      <img src={currentQuestion.flags.png} alt="Flag" width={200} />
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)}
+          disabled={feedback !== null} required autoFocus/>
+
+        <button type="submit" disabled={feedback !== null}>Check your answers</button>
+      </form>
+
+      {feedback !== null && (
+        <div>
+          {feedback
+            ? '✅ Correct!'
+            : `❌ Wrong! Right answer is: ${currentQuestion.name.common}`}
+        </div>
+      )}
+
+      <p>Question {currentIndex + 1} of {questions.length}</p>
+      <p>Score: {score}</p>
+    </div>
+  );
+};
+
 export default Quiz;
+
