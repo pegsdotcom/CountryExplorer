@@ -226,11 +226,17 @@ body {
  transform: translateY(-5px); 
 }
 /*Countries*/
+.body{
+  background-image: url(../public/images/countriespic.jpg);
+  background-size: cover;         /* Täck hela ytan */
+  background-position: center;    /* Centrera bilden */
+  background-repeat: no-repeat; 
+}
 .region-container {
   max-width: 1000px; 
   margin: 50px auto; 
   padding: 20px;
-  background: rgb(255, 255, 255);
+  background: rgba(26, 76, 107, 0.368);
   box-sizing: border-box;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);

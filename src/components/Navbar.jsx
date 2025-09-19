@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div className="nav-left">
+    <nav className='navbar'>
+      <div className='nav-left'>
         <Link to="/collection" className="nav-link">Collection</Link>
         <Link to="/om-oss" className="nav-link">Om oss</Link>
       </div>

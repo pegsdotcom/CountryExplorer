@@ -1,12 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// någonstans i din kod (ex: App.jsx eller main.js)
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
 import './index.css';
 import Home from './pages/Home';
 import Countries from './components/Countries';
-import CountryDetails from './components/CountryDetails';
-import Collection from './components/Collection';
+import DetailsPage from './pages/DetailsPage';
+import CollectionPage from './pages/CollectionPage';
 
 function App() {
 
@@ -14,10 +12,10 @@ function App() {
   return (
     <Router>
     <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/Countries" element={<Countries />} />
-    <Route path='/Countries/:countryName' element={<CountryDetails />} />
-    <Route path="/collection" element={<Collection />} />
+    <Route path='/' element={<Home />} />
+    <Route path='/Countries' element={<Countries />} />
+    <Route path='/Countries/:countryName' element={<DetailsPage />} />
+    <Route path="/CollectionPage" element={<CollectionPage />} />
     </Routes>
     </Router>
   )
