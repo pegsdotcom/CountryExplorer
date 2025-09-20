@@ -9,6 +9,7 @@ export const QuizProvider = ({ children }) => {
     const [questions, setQuestions] = useState([]);
     const [score, setScore] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [results, setResults] = useState([]);
 
     useEffect(() => {
         if(!region) return;
@@ -52,15 +53,20 @@ const resetQuiz = () => {
   };
 
 const saveResult = () => {
-    const results = JSON.parse(localStorage.getItem('quizResults') || '[]');
-    results.push({ username, region, score, date: new Date().toISOString() });
-    localStorage.setItem('quizResults', JSON.stringify(results));
-  };
+  const stored = JSON.parse(localStorage.getItem('quizResults') || '[]');
+  const newResult = { username, region, score, date: new Date().toISOString() };
+  const updated = [...stored, newResult];
+
+  localStorage.setItem('quizResults', JSON.stringify(updated));
+  setResults(updated); // Uppdatera även context
+};
+
 
 return (
     <QuizContext.Provider value={{
-      username, setUsername, region, setRegion, questions, currentIndex, score, currentAnswer, nextQuestion, saveResult, resetQuiz,
-    }}>
+      username, setUsername, region, setRegion, questions, 
+      currentIndex, score, currentAnswer, nextQuestion, 
+      saveResult, resetQuiz, results, setResults,}}>
       {children}
     </QuizContext.Provider>
   );

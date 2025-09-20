@@ -6,6 +6,7 @@ import Countries from './components/Countries';
 import DetailsPage from './pages/DetailsPage';
 import CollectionPage from './pages/CollectionPage';
 import QuizPage from './pages/QuizPage';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
     <Route path='/Countries/:countryName' element={<DetailsPage />} />
     <Route path="/Collection" element={<CollectionPage />} />
     <Route path="/Quiz" element={<QuizPage />} />
+    <Route path="/Leaderboard" element={<LeaderboardPage />} />
 
     </Routes>
     </Router>
