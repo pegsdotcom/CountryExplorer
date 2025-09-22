@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CountriesContext } from '../context/CountriesContext';
 
 const DetailsPage = () => {
-  const { countryName } = useParams(); 
+  const { countryName } = useParams();
   const { saveCountry } = useContext(CountriesContext);
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,14 +12,15 @@ const DetailsPage = () => {
   const fetchCountry = async () => {
     setLoading(true);
 
-    const res = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
-    if (!res.ok) {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+
+    if (!response.ok) {
       setCountry(null);
       setLoading(false);
       return;
     }
 
-    const data = await res.json();
+    const data = await response.json();
     setCountry(data.length > 0 ? data[0] : null);
     setLoading(false);
   };
@@ -39,15 +40,15 @@ const currencyName = country.currencies
     <div className="details-container">
       <h2>{country.name.common}</h2>
       <img src={country.flags.svg} alt={`Flagga av ${country.name.common}`} className="details-flag" />
-      <p><strong>Valuta:</strong> {currencyName}</p>
-      <p><strong>Befolkning:</strong> {country.population.toLocaleString()}</p>
+      <p className='detail-p'><strong>Valuta:</strong> {currencyName}</p>
+      <p className='detail-p'><strong>Befolkning:</strong> {country.population.toLocaleString()}</p>
       <p>
-      <strong>Google Maps:</strong>{' '}
-        <a href={country.maps.googleMaps} target="_blank" rel="noopener noreferrer">
+      <strong className='google'>Google Maps:</strong>{' '}
+        <a href={country.maps.googleMaps} target="_blank" rel="noopener noreferrer" className='map-link'>
           Visa på karta
         </a>
       </p>
-      <button onClick={() => saveCountry(country)}>Spara landet</button>
+      <button onClick={() => saveCountry(country)} className='save-btn'>Save to your collection</button>
     </div>
   );
 };

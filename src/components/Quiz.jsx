@@ -2,13 +2,13 @@ import { useContext, useState } from 'react';
 import { QuizContext } from '../context/QuizContext';
 
 const Quiz = ({ onFinish }) => {
-  const {questions, currentIndex, currentAnswer,score, nextQuestion,saveResult} = useContext(QuizContext);
+  const {questions, currentIndex, currentAnswer, score, nextQuestion, saveResult,} = useContext(QuizContext);
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState(null);
 
   if (!questions.length) return <div>Laddar frågor...</div>;
+  const { flags, name } = questions[currentIndex];
 
-  const currentQuestion = questions[currentIndex];
   const handleSubmit = (e) => {
     e.preventDefault();
     const isCorrect = currentAnswer(userInput);
@@ -17,32 +17,24 @@ const Quiz = ({ onFinish }) => {
     setTimeout(() => {
       setFeedback(null);
       setUserInput('');
-      if (currentIndex + 1 >= questions.length) {
-        saveResult();
-        onFinish();
-      } else {
-        nextQuestion();
-      }
+      currentIndex + 1 >= questions.length ? (saveResult(), onFinish()) : nextQuestion();
     }, 2000);
   };
 
   return (
     <div className="quiz-question">
-      <img src={currentQuestion.flags.png} alt="Flag" width={200} />
+      <img src={flags.png} alt="Flag" width={200} />
 
       <form onSubmit={handleSubmit}>
         <input
           type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)}
-          disabled={feedback !== null} required autoFocus/>
-
+          disabled={feedback !== null} required/>
         <button type="submit" disabled={feedback !== null}>Check your answers</button>
       </form>
 
       {feedback !== null && (
         <div>
-          {feedback
-            ? '✅ Correct!'
-            : `❌ Wrong! Right answer is: ${currentQuestion.name.common}`}
+          {feedback ? '✅ Correct!' : `❌ Wrong! Right answer is: ${name.common}`}
         </div>
       )}
 
@@ -53,4 +45,5 @@ const Quiz = ({ onFinish }) => {
 };
 
 export default Quiz;
+
 

@@ -1,13 +1,11 @@
-import Navbar from './Navbar'; 
-
 const Header = () => {
     return ( 
-
+      <>
+    
     <section className="hero-section">
       <video autoPlay loop muted playsInline className="hero-video">
       <source src="/images/videos/hero.mp4" />
       </video>
-        <Navbar />
       <div className="hero-content">
         <h1>Discover the World, One Country at a Time</h1>
         <p>
@@ -15,6 +13,7 @@ const Header = () => {
         </p>
       </div>
     </section>
+    </>
   );
 };
 
