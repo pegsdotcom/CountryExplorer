@@ -5,6 +5,7 @@ export const CountriesProvider = ({ children }) => {
   const [region, setRegion] = useState(null);
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
+  
   const [savedCountries, setSavedCountries] = useState(() => {
     const saved = localStorage.getItem('savedCountries');
     return saved ? JSON.parse(saved) : [];
@@ -17,17 +18,18 @@ export const CountriesProvider = ({ children }) => {
   useEffect(() => {
     if (!region) return;
     const fetchRegion = async () => {
-      setLoading(true);
+    setLoading(true);
 
-      const res = await fetch(`https://restcountries.com/v3.1/region/${region}`);
-      if (!res.ok) {
-        setCountries([]);
-        setLoading(false);
-        return;
-      }
-      const data = await res.json();
-      setCountries(data);
+  const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
+    if (!response.ok) {
+      setCountries([]);
       setLoading(false);
+      return;
+    }
+
+    const data = await response.json();
+    setCountries(data);
+    setLoading(false);
     };
 
     fetchRegion().catch(() => {

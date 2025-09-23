@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CountriesContext } from '../context/CountriesContext';
 import { Link } from 'react-router-dom';
+import '../styles/Countrypage.css';
 
 const CollectionPage = () => {
   const { savedCountries } = useContext(CountriesContext);
@@ -13,7 +14,7 @@ const CollectionPage = () => {
       <div className="collection-grid">
         {savedCountries.map(country => (
           <Link key={country.cca3} to={`/countries/${country.name.common}`} className="country-card">
-            <img src={country.flags.svg} alt={`Flagga för ${country.name.common}`} />
+            <img src={country.flags.svg}/>
             <p>{country.name.common}</p>
           </Link>
         ))}

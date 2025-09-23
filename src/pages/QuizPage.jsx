@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { QuizContext } from '../context/QuizContext';
 import QuizSetup from '../components/QuizSetup';
 import Quiz from '../components/Quiz';
+import '../styles/Quiz.css';
 
 const QuizPage = () => {
   const { score, questions, username, resetQuiz } = useContext(QuizContext);
@@ -32,11 +33,11 @@ const QuizPage = () => {
   }
   return (
     <div>
-      <h2>Quiz klart!</h2>
+      <h2>Quiz done!</h2>
       <p>
-        Hej <strong>{username}</strong>, du fick <strong>{score}</strong> av {questions.length} rätt!
+        Hello <strong>{username}</strong>, you got  <strong>{score}</strong> of {questions.length} correct!
       </p>
-      <button onClick={handleRestart}>Starta om quizet</button>
+      <button onClick={handleRestart}>Reset quiz</button>
     </div>
   );
 };

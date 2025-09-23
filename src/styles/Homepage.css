@@ -1,0 +1,116 @@
+/*Navbar*/
+.navbar{
+  width: 95%;
+  position: absolute; 
+  z-index: 1000;
+  top: 20px;
+  margin-left: 30px;
+}
+.navbar-container{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+.logo-link {
+  color: white;
+  font-size: 1.8rem;
+  text-decoration: none;
+}
+.logo-text {
+  color: white;
+}
+.buttons-bar {
+  display: flex;
+  gap: 2rem;
+}
+.nav-btn {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  top: 4px;
+}
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 80%;
+  height: 2px;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+.nav-btn:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+.nav-btn:hover::after,
+.nav-btn.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+.nav-btn.active {
+  color: #9fe2ef; 
+}
+/*Header*/
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.hero-content {
+  text-align: center;
+  z-index: 1;
+  padding: 0 2rem;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.hero-content p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  margin-right: 20px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+/*Footer*/
+.footer{
+  width: 100%;
+  height: 200px;
+  background: #04101d;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgb(11, 26, 36);
+}
+.footer-txt{
+  text-align: center;
+  font-weight: 300;
+}

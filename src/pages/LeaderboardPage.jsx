@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { QuizContext } from '../context/QuizContext';
+import '../styles/Leaderboardpage.css';
 
 const regions = ['Europe', 'Asia', 'Oceania', 'Americas', 'Africa'];
 
@@ -30,7 +31,7 @@ const LeaderboardPage = () => {
             {regionResults.length === 0 ? (
               <p>No results yet.</p>
             ) : (
-              <ul>
+              <ul className='leaderboard-list'>
                 {regionResults.map((r, i) => (
                   <li key={i}>
                     <strong>{r.username}</strong> – {r.score} poäng

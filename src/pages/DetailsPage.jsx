@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CountriesContext } from '../context/CountriesContext';
+import '../styles/Countrypage.css';
+
 
 const DetailsPage = () => {
   const { countryName } = useParams();
@@ -13,7 +15,6 @@ const DetailsPage = () => {
     setLoading(true);
 
     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
-
     if (!response.ok) {
       setCountry(null);
       setLoading(false);
@@ -24,6 +25,7 @@ const DetailsPage = () => {
     setCountry(data.length > 0 ? data[0] : null);
     setLoading(false);
   };
+
   fetchCountry().catch(() => {
     setCountry(null);
     setLoading(false);
@@ -33,13 +35,12 @@ const DetailsPage = () => {
 if (loading) return <p>Laddar landets data...</p>;
 if (!country) return <p>Landet hittades inte.</p>;
 
-const currencyName = country.currencies
-  ? Object.values(country.currencies)[0].name : 'N/A';
+const currencyName = country.currencies ? Object.values(country.currencies)[0].name : 'N/A';
 
   return (
     <div className="details-container">
       <h2>{country.name.common}</h2>
-      <img src={country.flags.svg} alt={`Flagga av ${country.name.common}`} className="details-flag" />
+      <img src={country.flags.svg} className="details-flag" />
       <p className='detail-p'><strong>Valuta:</strong> {currencyName}</p>
       <p className='detail-p'><strong>Befolkning:</strong> {country.population.toLocaleString()}</p>
       <p>
