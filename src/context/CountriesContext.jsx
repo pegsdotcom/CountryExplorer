@@ -5,7 +5,8 @@ export const CountriesProvider = ({ children }) => {
   const [region, setRegion] = useState(null);
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+  const [modalMessage, setModalMessage] = useState('');
+
   const [savedCountries, setSavedCountries] = useState(() => {
     const saved = localStorage.getItem('savedCountries');
     return saved ? JSON.parse(saved) : [];
@@ -39,18 +40,19 @@ export const CountriesProvider = ({ children }) => {
   }, [region]);
 
   const saveCountry = (country) => {
-    const alreadySaved = savedCountries.some(c => c.name.common === country.name.common);
-    if (alreadySaved) {
-      alert(`${country.name.common} finns redan sparat.`);
-      return;
-    }
-    setSavedCountries(prev => [...prev, country]);
-    alert(`${country.name.common} sparades!`);
-  };
+  const alreadySaved = savedCountries.some(c => c.name.common === country.name.common);
+  if (alreadySaved) {
+    setModalMessage(`${country.name.common} finns redan sparat.`);
+    return;
+  }
+  setSavedCountries(prev => [...prev, country]);
+  setModalMessage(`${country.name.common} sparades!`);
+};
+
 
   return (
     <CountriesContext.Provider
-      value={{ region, setRegion, countries, loading, savedCountries, saveCountry }} >
+      value={{ region, setRegion, countries, loading, savedCountries, saveCountry, modalMessage, setModalMessage }} >
       {children}
     </CountriesContext.Provider>
   );

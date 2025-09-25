@@ -11,8 +11,8 @@ export const QuizProvider = ({ children }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [results, setResults] = useState([]);
 
-    useEffect(() => {
-        if(!region) return;
+  useEffect(() => {
+    if(!region) return;
 
 const fetchCountries = async () => {
     const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
@@ -23,21 +23,21 @@ const fetchCountries = async () => {
         fetchCountries();
             }, [region]);
             
-    useEffect(() => {
-        if (countries.length === 0) return;
-        const shuffled = [...countries].sort(() => Math.random() - 0.5);
-        const selected = shuffled.slice(0, Math.min(15, shuffled.length));
-        setQuestions(selected);
-        setCurrentIndex(0);
-        setScore(0);
-            }, [countries]);
+  useEffect(() => {
+    if (countries.length === 0) return;
+    const shuffled = [...countries].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, Math.min(15, shuffled.length));
+      setQuestions(selected);
+      setCurrentIndex(0);
+      setScore(0);
+      }, [countries]);
 
 const currentAnswer = (userAnswer) => {
     const { name: { common: correct } } = questions[currentIndex];
     const normalize = str => str.toLowerCase();
     const isCorrect = normalize(userAnswer) === normalize(correct);
-        if (isCorrect) setScore(prev => prev + 1);
-    return isCorrect;
+      if (isCorrect) setScore(prev => prev + 1);
+        return isCorrect;
 };
 
 const nextQuestion = () => {
@@ -58,9 +58,8 @@ const saveResult = () => {
   const updated = [...stored, newResult];
 
   localStorage.setItem('quizResults', JSON.stringify(updated));
-  setResults(updated); // Uppdatera även context
+  setResults(updated);
 };
-
 
 return (
     <QuizContext.Provider value={{

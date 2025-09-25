@@ -6,7 +6,7 @@ import '../styles/Countrypage.css';
 
 const DetailsPage = () => {
   const { countryName } = useParams();
-  const { saveCountry } = useContext(CountriesContext);
+  const { saveCountry, modalMessage, setModalMessage } = useContext(CountriesContext);
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,14 +14,14 @@ const DetailsPage = () => {
   const fetchCountry = async () => {
     setLoading(true);
 
-    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+  const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
     if (!response.ok) {
       setCountry(null);
       setLoading(false);
       return;
     }
 
-    const data = await response.json();
+  const data = await response.json();
     setCountry(data.length > 0 ? data[0] : null);
     setLoading(false);
   };
@@ -32,8 +32,17 @@ const DetailsPage = () => {
   });
 }, [countryName]);
 
-if (loading) return <p>Laddar landets data...</p>;
-if (!country) return <p>Landet hittades inte.</p>;
+useEffect(() => {
+  if (modalMessage) {
+    const timer = setTimeout(() => {
+      setModalMessage('');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [modalMessage]);
+
+if (loading) return <p className='message'>Laddar landets data...</p>;
+if (!country) return <p className='message'>Landet hittades inte.</p>;
 
 const currencyName = country.currencies ? Object.values(country.currencies)[0].name : 'N/A';
 
@@ -50,7 +59,15 @@ const currencyName = country.currencies ? Object.values(country.currencies)[0].n
         </a>
       </p>
       <button onClick={() => saveCountry(country)} className='save-btn'>Save to your collection</button>
+      
+      {modalMessage && (
+        <div className="modal-message">
+          {modalMessage}
+          <button onClick={() => setModalMessage('')} className="close-btn">✖</button>
+        </div>
+      )}
     </div>
+
   );
 };
 

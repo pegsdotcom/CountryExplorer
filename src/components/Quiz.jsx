@@ -24,25 +24,29 @@ const Quiz = ({ onFinish }) => {
 
   return (
     <div className="quiz-question">
-      <h2 className="question-title">Can you name this country?</h2>
-      <img src={flags.png} alt="Flag" width={200} />
+      <div className="quiz-content">
+       <h2 className="question-title">Can you name this country?</h2>
+        <img src={flags.png} className="flag-image" />
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)}
-          disabled={feedback !== null} required className='submit-label'/>
-        <button type="submit" disabled={feedback !== null} className='quiz-check'>Let’s find out!</button>
-      </form>
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)}
+        disabled={feedback !== null} required className="submit-label"/>
+      <button type="submit" disabled={feedback !== null} className="quiz-check">Let’s find out!</button>
+    </form>
 
-      {feedback !== null && (
-        <div className='feedback'>
-          {feedback ? '✅ Correct!' : `❌ Wrong! Right answer is: ${name.common}`}
-        </div>
-      )}
+    {feedback !== null && (
+      <div className="feedback">
+        {feedback ? '✅ Correct!' : `❌ Wrong! Right answer is: ${name.common}`}
+      </div>
+    )}
+  </div>
 
-      <p className='quiz-p'>Question {currentIndex + 1} of {questions.length}</p>
-      <p className='quiz-p'>Score: {score}</p>
-    </div>
+  <div className="quiz-footer">
+    <p className="quiz-p">Question {currentIndex + 1} of {questions.length}</p>
+    <p className="quiz-p">Score: {score}</p>
+  </div>
+</div>
+
   );
 };
 

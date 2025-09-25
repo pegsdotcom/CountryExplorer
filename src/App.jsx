@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import './index.css';
 import Home from './pages/Home';
 import DetailsPage from './pages/DetailsPage';
@@ -14,17 +13,16 @@ function App() {
 
   return (
     <Router>
-     <Navbar />
-    <Routes>
-    <Route path='/' element={<Home />} />
-    <Route path='/Countries' element={<CountriesPage />} />
-    <Route path='/Countries/:countryName' element={<DetailsPage />} />
-    <Route path="/Collection" element={<CollectionPage />} />
-    <Route path="/Quiz" element={<QuizPage />} />
-    <Route path="/Leaderboard" element={<LeaderboardPage />} />
-
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/Countries' element={<CountriesPage />} />
+        <Route path='/Countries/:countryName' element={<DetailsPage />} />
+        <Route path="/Collection" element={<CollectionPage />} />
+        <Route path="/Quiz" element={<QuizPage />} />
+        <Route path="/Leaderboard" element={<LeaderboardPage />} />
     </Routes>
-    </Router>
+  </Router>
   )
 }
 

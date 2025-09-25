@@ -32,13 +32,14 @@ const QuizPage = () => {
     return <Quiz onFinish={finishQuiz} />;
   }
   return (
-    <div>
+    <div className="quiz-result">
       <h2>Quiz done!</h2>
-      <p>
-        Hello <strong>{username}</strong>, you got  <strong>{score}</strong> of {questions.length} correct!
-      </p>
-      <button onClick={handleRestart}>Reset quiz</button>
+      <p>Hello <strong>{username}</strong>, you got <strong>{score}</strong> of {questions.length} correct!</p>
+        <div className="quiz-buttons">
+          <button onClick={handleRestart}>Reset quiz</button>
+        </div>
     </div>
+
   );
 };
 

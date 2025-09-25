@@ -9,9 +9,9 @@ import { QuizProvider } from './context/QuizContext';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CountriesProvider>
-        <QuizProvider>
+      <QuizProvider>
         <App />
       </QuizProvider>
-      </CountriesProvider>
+    </CountriesProvider>
   </StrictMode>,
 )
