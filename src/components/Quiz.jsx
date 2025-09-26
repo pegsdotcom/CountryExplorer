@@ -30,7 +30,7 @@ const Quiz = ({ onFinish }) => {
 
     <form onSubmit={handleSubmit}>
       <input type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)}
-        disabled={feedback !== null} required className="submit-label"/>
+        disabled={feedback !== null} className="submit-label"/>
       <button type="submit" disabled={feedback !== null} className="quiz-check">Let’s find out!</button>
     </form>
 
