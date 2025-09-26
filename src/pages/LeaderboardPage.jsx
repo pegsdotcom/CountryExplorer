@@ -11,8 +11,8 @@ const LeaderboardPage = () => {
     if (results.length === 0) {
       const stored = JSON.parse(localStorage.getItem('quizResults') || '[]');
       setResults(stored);
-    }
-  }, [results, setResults]);
+   }
+}, []);
 
   const getRegionResults = (region) => {
     return results

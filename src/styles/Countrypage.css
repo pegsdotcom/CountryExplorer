@@ -212,8 +212,11 @@
   position: relative;
 }
 .country-card {
+  width: 180px;
+  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-decoration: none;
   background-color: #1327337b;
@@ -229,7 +232,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .country-card img {
- width: 100%;
+  width: 100%;
   height: 100px;
   object-fit: cover; 
   border-radius: 8px;

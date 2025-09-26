@@ -6,7 +6,7 @@ import '../styles/Countrypage.css';
 const CollectionPage = () => {
   const { savedCountries } = useContext(CountriesContext);
 
-  if (savedCountries.length === 0) return <p>Du har inga sparade länder.</p>;
+  if (savedCountries.length === 0) return <p className='message'>Du har inga sparade länder.</p>;
 
   return (
     <>
